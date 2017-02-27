@@ -1,3 +1,5 @@
+import scala.annotation.tailrec
+
 def binarySearch(lookingFor: Int, input: Vector[Int]): Option[Int] = {
   @tailrec
   def go(start: Int, end: Int): Option[Int] = {
