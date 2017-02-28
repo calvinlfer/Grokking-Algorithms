@@ -32,21 +32,17 @@ def insert(element: Int, tree: Node): Node =
   tree match {
     // leaves
     case n @ Node(_, value, None) if element > value =>
-      println(n)
       n.copy(right = rootNode(element))
 
     case n @ Node(None, value, _) if element < value =>
-      println(n)
       n.copy(left = rootNode(element))
 
     // thou shalt not mutate, but create
     // thou shalt re-create what you touch
     case n @ Node(_, value, Some(rightTree)) if element > value =>
-      println(n)
       n.copy(right = Some(insert(element, rightTree)))
 
     case n @ Node(Some(leftTree), value, _) if element < value =>
-      println(n)
       n.copy(left = Some(insert(element, leftTree)))
   }
 
