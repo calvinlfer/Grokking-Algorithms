@@ -32,3 +32,29 @@ def selectionSortV2(elements: Vector[Int]): Vector[Int] = {
 }
 
 selectionSortV2(Vector(5, 3, 2, 1))
+
+// Mutable in-place selection sort
+def mutableSelectionSort(elements: Vector[Int]): Vector[Int] = {
+  def minIndex(elements: Seq[Int], start: Int, end: Int): Int = {
+    var i = start
+    var min = start
+    while (i < end) {
+      if (elements(i) < elements(min)) min = i
+      i += 1
+    }
+    min
+  }
+
+  val buffer = elements.toBuffer
+  val maxLength = buffer.length
+  for (i <- 0 until maxLength) {
+    val idx = minIndex(buffer, i, maxLength)
+    // switch elements in place
+    val temp = buffer(i)
+    buffer(i) = buffer(idx)
+    buffer(idx) = temp
+  }
+  buffer.toVector
+}
+
+mutableSelectionSort(Vector(1, 2, 3, 4, 4))
